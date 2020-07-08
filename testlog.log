@@ -1,0 +1,9 @@
+OWNER    BATCH_NAME     SUBMITTED   DONE   RUN    IDLE  TOTAL JOB_IDS                                                                                        
+gemc     ID: 2103366   5/18 12:39      _      1      _      1 2103366.0                                                                                      
+gemc     ID: 2103367   5/18 12:39      _      1      _      1 2103367.0                                                                                      
+gemc     ID: 2103674   5/20 07:33    999      1      _   1000 2103674.319                                                                                    
+gemc     ID: 2103825   5/20 15:33    999      1      _   1000 2103825.613                                                                                    
+gemc     ID: 2103955   5/20 15:41    953     47      _   1000 2103955.641-996
+                                                                                                                                                                                                                                             
+Total for query: 51 jobs; 0 completed, 0 removed, 0 idle, 51 running, 0 held, 0 suspended                                                                    
+Total for all users: 509 jobs; 0 completed, 0 removed, 0 idle, 194 running, 315 held, 0 suspended  

@@ -1,0 +1,21 @@
+{
+    "user_data": [
+        {
+            "user": "No user", 
+            "job id": "No ID", 
+            "submitted": "No data", 
+            "total": "No data", 
+            "done": "No data", 
+            "run": "No data", 
+            "idle": "No data", 
+            "osg id": "No ID", 
+            "batch_name": "No data", 
+            "owner": "No data", 
+            "job_ids": "No data"
+        }
+    ], 
+    "metadata": {
+        "update_timestamp": "2020-05-21 13:23:25", 
+        "footer": "Total for all users: 508 jobs; 0 completed, 0 removed, 0 idle, 193 running, 315 held, 0 suspended"
+    }
+}
