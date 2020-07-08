@@ -1,3 +1,19 @@
 [submodule "utils"]
 	path = utils
 	url = ../utils.git
+
+[submodule "client"]
+	path = client
+	url = ../client.git
+
+[submodule "server"]
+	path = server
+	url = ../server.git
+
+[submodule "web_interface"]
+	path = web_interface
+	url = https://github.com/mit-mc-clas12/web_interface
+
+[submodule "documentation"]
+	path = documentation
+	url = https://github.com/mit-mc-clas12/documentation
