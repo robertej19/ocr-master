@@ -1,14 +1,14 @@
 [submodule "utils"]
 	path = utils
-	url = ../utils.git
+	url = https://github.com/robertej19/utils
 
 [submodule "client"]
 	path = client
-	url = ../client.git
+	url = https://github.com/robertej19/client
 
 [submodule "server"]
 	path = server
-	url = ../server.git
+	url = https://github.com/robertej19/server
 
 [submodule "web_interface"]
 	path = web_interface
