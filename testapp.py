@@ -1,31 +1,69 @@
 import subprocess
 
 
-process = subprocess.Popen(['rm', 'utils/CLAS12OCR.db'],
-                     stdout=subprocess.PIPE, 
-                     stderr=subprocess.PIPE)
-stdout, stderr = process.communicate()
 
-print(stdout)
+class command_class:
+	def __init__(self,command_name,command_string,expected_output):
+		self.name = command_name
+		self.command = command_string
+		self.expect_out = expected_output
 
-process = subprocess.Popen(['python2', 'utils/create_database.py','--lite=utils/CLAS12OCR.db'],
-                     stdout=subprocess.PIPE, 
-                     stderr=subprocess.PIPE)
-stdout, stderr = process.communicate()
 
-print(stdout)
+
+
+
+def test_function(command):
+	process = subprocess.Popen(command.command,
+		stdout=subprocess.PIPE, 
+		stderr=subprocess.PIPE)
+	stdout, stderr = process.communicate()
+
+
+	if command.expect_out != '0':
+		if stdout == command.expect_out:
+			return(stdout,stderr)
+		else:
+			return(stdout, stderr + "unexpected sdtout of: " + stdout)
+	else:
+		return(stdout,stderr)
+
+
+rm_sqlite_db = command_class('Remove Old SQLite DB',
+								['rm','utils/CLAS12OCR.db'],
+								'0')
+
+
+create_sqlite_db = command_class('Create SQLite DB',
+								['python2', 'utils/create_database.py','--lite=utils/CLAS12OCR.db'],
+								'0')
+
+submit_scard_1 = command_class('Submit scard 1 on client',
+								['python2', 'client/src/SubMit.py','--lite=utils/CLAS12OCR.db','-u=robertej','client/scard_type1.txt'],
+								'0')
+
+submit_scard_2 = command_class('Create scard 2 on client',
+								['python2', 'client/src/SubMit.py','--lite=utils/CLAS12OCR.db','-u=robertej','client/scard_type2.txt'],
+								'0')
+
+verify_submission_success = command_class('Verify scard submission success',
+								['sqlite3','utils/CLAS12OCR.db','SELECT user FROM submissions WHERE user_submission_id=1'],
+								'robertej\n')
+
+
+command_sequence = [rm_sqlite_db,create_sqlite_db, submit_scard_1, submit_scard_2,verify_submission_success]
+
+for command in command_sequence:
+	out, err = test_function(command)
+	print('Testing command: {0}'.format(command.name))
+	if not err:
+		print('... success')
+	else:
+		print('... fail, error message:')
+		print(err)
+
 
 
 """
-cd utils
-rm CLAS12OCR.db
-python2 create_database.py --lite=CLAS12OCR.db
-cd ../client
-python2 src/SubMit.py --lite=../utils/CLAS12OCR.db -u=robertej scard_type1.txt
-python2 src/SubMit.py --lite=../utils/CLAS12OCR.db -u=robertej scard_type2.txt
-cd ..
-cd utils
-sqlite3 CLAS12OCR.db 'SELECT user FROM SUBMISSIONS';
 cd ../server/src
 python2 Submit_UserSubmission.py -b 2 --lite=../../utils/CLAS12OCR.db
 sqlite3 ../../utils/CLAS12OCR.db 'SELECT user FROM SUBMISSIONS';
