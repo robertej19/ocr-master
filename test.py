@@ -6,6 +6,8 @@ process = subprocess.Popen(['rm', 'utils/CLAS12OCR.db'],
                      stderr=subprocess.PIPE)
 stdout, stderr = process.communicate()
 
+print(stdout)
+
 process = subprocess.Popen(['python2', 'utils/create_database.py','--lite=utils/CLAS12OCR.db'],
                      stdout=subprocess.PIPE, 
                      stderr=subprocess.PIPE)
