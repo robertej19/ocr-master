@@ -30,3 +30,4 @@ cd ../server/src
 python2 Submit_UserSubmission.py -b 2 --lite=../../utils/CLAS12OCR.db
 sqlite3 ../../utils/CLAS12OCR.db 'SELECT user FROM SUBMISSIONS';
 #which condor_submit if val = 0, do not submit, print not found message
+"""
