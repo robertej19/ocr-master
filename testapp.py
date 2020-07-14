@@ -51,7 +51,7 @@ verify_submission_success = command_class('Verify scard submission success',
 								'robertej\n')
 
 
-command_sequence = [rm_sqlite_db,create_sqlite_db, submit_scard_1, submit_scard_2,verify_submission_success]
+command_sequence = [create_sqlite_db, submit_scard_1, verify_submission_success]
 
 
 def run_through_tests(command_sequence):
