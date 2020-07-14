@@ -3,11 +3,13 @@ python:
   - "2.7"
   - "3.6"      # current default Python on Travis CI
 # command to install dependencies
+services:
+ - mysql
 install:
 #  - if [[ $TRAVIS_PYTHON_VERSION == 2.7 ]]; then pip install -r req-py2.txt; fi
 # - pip install -r req-py2.txt; python_version == "2.7"
  - pip install -r requirements.txt
+ - pip install mysql-python --use-mirrors
 # command to run tests
-services:
- - mysql
+
 script: python2 testapp.py || python3 testapp.py
