@@ -70,7 +70,11 @@ def run_through_tests(command_sequence):
 
 
 
-run_through_tests(command_sequence)
+status = run_through_tests(command_sequence)
+if status > 0:
+	exit 1
+else:
+	exit
 
 
 """
