@@ -23,14 +23,15 @@ def test_function(command):
 		if stdout == command.expect_out:
 			return(stdout,stderr)
 		else:
-			return(stdout, stderr + "unexpected sdtout of: " + stdout)
+			err_mess = str(stderr) + "unexpected sdtout of: " + str(stdout)
+			return(stdout, err_mess)
 	else:
 		return(stdout,stderr)
 
-
-rm_sqlite_db = command_class('Remove Old SQLite DB',
-								['rm','utils/CLAS12OCR.db'],
-								'0')
+#Put in logic for only doing this if the database already exists
+#rm_sqlite_db = command_class('Remove Old SQLite DB',
+#								['rm','utils/CLAS12OCR.db'],
+#								'0')
 
 
 create_sqlite_db = command_class('Create SQLite DB',
@@ -38,12 +39,12 @@ create_sqlite_db = command_class('Create SQLite DB',
 								'0')
 
 submit_scard_1 = command_class('Submit scard 1 on client',
-								['python2', 'client/src/SubMit.py','--lite=utils/CLAS12OCR.db','-u=robertej','client/scard_type1.txt'],
+								['python2', 'client/src/SubMit.py','--lite=utils/CLAS12OCR.db','-u=robertej','client/scards/scard_type1.txt'],
 								'0')
 
-submit_scard_2 = command_class('Create scard 2 on client',
-								['python2', 'client/src/SubMit.py','--lite=utils/CLAS12OCR.db','-u=robertej','client/scard_type2.txt'],
-								'0')
+#submit_scard_2 = command_class('Create scard 2 on client',
+#								['python2', 'client/src/SubMit.py','--lite=utils/CLAS12OCR.db','-u=robertej','client/scard_type2.txt'],
+#								'0')
 
 verify_submission_success = command_class('Verify scard submission success',
 								['sqlite3','utils/CLAS12OCR.db','SELECT user FROM submissions WHERE user_submission_id=1'],
