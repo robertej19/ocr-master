@@ -52,15 +52,25 @@ verify_submission_success = command_class('Verify scard submission success',
 
 command_sequence = [rm_sqlite_db,create_sqlite_db, submit_scard_1, submit_scard_2,verify_submission_success]
 
-for command in command_sequence:
-	out, err = test_function(command)
-	print('Testing command: {0}'.format(command.name))
-	if not err:
-		print('... success')
-	else:
-		print('... fail, error message:')
-		print(err)
 
+def run_through_tests(command_sequence):
+	err_sum = 0 
+	for command in command_sequence:
+		out, err = test_function(command)
+		print('Testing command: {0}'.format(command.name))
+		if not err:
+			print('... success')
+			print(out)
+		else:
+			print('... fail, error message:')
+			print(err)
+			err_sum += 1
+			
+	return err_sum
+
+
+
+run_through_tests(command_sequence)
 
 
 """
