@@ -1,4 +1,5 @@
 import subprocess
+import os
 
 
 
@@ -29,15 +30,21 @@ def test_function(command):
 		return(stdout,stderr)
 
 
+folders = ['utils','server','client']
+for folder in folders:
+	folder_name= os.path.dirname(os.path.abspath(__file__))+'/'+folder
+	print(folder_name)
+	if not os.path.isdir(folder_name):
+		print('{0} not found, cloning from github'.format(folder))
+		substring = 'git@github.com:robertej19/{0}.git'.format(folder)
+		subprocess.call(['git','clone',substring])
 
-#Also chage superrepoupdate git message
 
-#Need to fix this, stat!!!!!!!!!!!!!
-# Also include logic for a fresh download if client utils server do not yet exist
-#Put in logic for only doing this if the database already exists
-#rm_sqlite_db = command_class('Remove Old SQLite DB',
-#								['rm','utils/CLAS12OCR.db'],
-#								'0')
+
+filename = os.path.dirname(os.path.abspath(__file__))+'/utils/CLAS12OCR.db'
+if os.path.isfile(filename):
+	print('removing previous database file')
+	subprocess.call(['rm',filename])
 
 
 create_sqlite_db = command_class('Create SQLite DB',
@@ -92,8 +99,5 @@ else:
 
 
 """
-cd ../server/src
-python2 Submit_UserSubmission.py -b 2 --lite=../../utils/CLAS12OCR.db
-sqlite3 ../../utils/CLAS12OCR.db 'SELECT user FROM SUBMISSIONS';
 #which condor_submit if val = 0, do not submit, print not found message
 """

@@ -10,4 +10,3 @@ sqlite3 CLAS12OCR.db 'SELECT user FROM SUBMISSIONS';
 cd ..
 python2 server/src/Submit_UserSubmission.py -b 1 --lite=utils/CLAS12OCR.db -w -s -t  
 sqlite3 utils/CLAS12OCR.db 'SELECT user FROM SUBMISSIONS';
-#which condor_submit if val = 0, do not submit, print not found message
