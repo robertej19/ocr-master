@@ -30,6 +30,8 @@ def test_function(command):
 
 
 
+#Also chage superrepoupdate git message
+
 #Need to fix this, stat!!!!!!!!!!!!!
 # Also include logic for a fresh download if client utils server do not yet exist
 #Put in logic for only doing this if the database already exists
