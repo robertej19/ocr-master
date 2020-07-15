@@ -29,9 +29,9 @@ def test_function(command):
 		return(stdout,stderr)
 
 #Put in logic for only doing this if the database already exists
-#rm_sqlite_db = command_class('Remove Old SQLite DB',
-#								['rm','utils/CLAS12OCR.db'],
-#								'0')
+rm_sqlite_db = command_class('Remove Old SQLite DB',
+								['rm','utils/CLAS12OCR.db'],
+								'0')
 
 
 create_sqlite_db = command_class('Create SQLite DB',
@@ -51,7 +51,13 @@ verify_submission_success = command_class('Verify scard submission success',
 								'robertej\n')
 
 
-command_sequence = [create_sqlite_db, submit_scard_1, verify_submission_success]
+
+submit_server_jobs = command_class('Submit jobs from server',
+								['python2', 'Submit_UserSubmission.py', '-b 1', '--lite=utils/CLAS12OCR.db', '-w', '-s', '-t'],
+								'0')
+
+
+command_sequence = [rm_sqlite_db,create_sqlite_db, submit_scard_1, verify_submission_success,submit_server_jobs]
 
 
 def run_through_tests(command_sequence):
