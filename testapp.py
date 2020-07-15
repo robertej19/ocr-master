@@ -61,7 +61,7 @@ submit_server_jobs = command_class('Submit jobs from server',
 								'0')
 
 
-command_sequence = [rm_sqlite_db,create_sqlite_db, submit_scard_1, verify_submission_success,submit_server_jobs]
+command_sequence = [create_sqlite_db, submit_scard_1, verify_submission_success,submit_server_jobs]
 
 
 def run_through_tests(command_sequence):
