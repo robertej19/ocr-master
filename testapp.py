@@ -53,7 +53,7 @@ verify_submission_success = command_class('Verify scard submission success',
 
 
 submit_server_jobs = command_class('Submit jobs from server',
-								['python2', 'Submit_UserSubmission.py', '-b 1', '--lite=utils/CLAS12OCR.db', '-w', '-s', '-t'],
+								['python2', 'server/src/Submit_UserSubmission.py', '-b','1', '--lite=utils/CLAS12OCR.db', '-w', '-s', '-t'],
 								'0')
 
 
@@ -67,8 +67,9 @@ def run_through_tests(command_sequence):
 		print('Testing command: {0}'.format(command.name))
 		if not err:
 			print('... success')
-			#print(out)
+			print(out)
 		else:
+			print(out)
 			print('... fail, error message:')
 			print(err)
 			err_sum += 1
