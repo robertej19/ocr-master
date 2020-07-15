@@ -28,10 +28,14 @@ def test_function(command):
 	else:
 		return(stdout,stderr)
 
+
+
+#Need to fix this, stat!!!!!!!!!!!!!
+# Also include logic for a fresh download if client utils server do not yet exist
 #Put in logic for only doing this if the database already exists
-rm_sqlite_db = command_class('Remove Old SQLite DB',
-								['rm','utils/CLAS12OCR.db'],
-								'0')
+#rm_sqlite_db = command_class('Remove Old SQLite DB',
+#								['rm','utils/CLAS12OCR.db'],
+#								'0')
 
 
 create_sqlite_db = command_class('Create SQLite DB',
